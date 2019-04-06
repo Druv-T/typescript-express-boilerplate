@@ -12,6 +12,6 @@ export class TokenRouter{
     }
 
     private initialize(): void{
-        this.tokenRouter.post("/", this.tokenController.index);
+        this.tokenRouter.post("/", this.tokenController.index.bind(this.tokenController));
     }
 }

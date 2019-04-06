@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import jwt from "express-jwt";
 import { TokenRouter, SampleRouter } from "../app/routes";
 import { config } from "../config";
@@ -12,14 +12,17 @@ interface IROUTER {
 const Token = new TokenRouter();
 const Sample = new SampleRouter();
 
-export const ROUTER: IROUTER[] = [{
-    handler: Token.tokenRouter,
-    middleware: [],
-    path: "/auth",
-}, {
-    handler: Sample.sampleRouter,
-    middleware: [
-        jwt({secret: config.ACCESS_SECRET}),
-    ],
-    path: "/sample",
-}];
+export const ROUTER: IROUTER[] = [
+    {
+        handler: Token.tokenRouter,
+        middleware: [],
+        path: "/auth",
+    },
+    {
+        handler: Sample.sampleRouter,
+        middleware: [
+            jwt({secret: config.ACCESS_SECRET}),
+        ],
+        path: "/sample",
+    }
+];
