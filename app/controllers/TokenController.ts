@@ -55,10 +55,8 @@ export class TokenController{
                     })
                 }
 
-                // Works but need to understand why is this happening
-
-                const username = decoded.username
-                const id = decoded.id
+                const username = (decoded as Payload).username
+                const id = (decoded as Payload).id
 
                 res.json(this.getTokens({username, id}))
             }
